@@ -1,0 +1,33 @@
+body {
+  background-color: orange;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.container li {
+  text-align: left;
+  font-size: 20px;
+}
+
+button {
+  display: flex;
+  margin: auto;
+}
+
+input {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+select {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
