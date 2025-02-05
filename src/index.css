@@ -14,8 +14,9 @@ body {
 }
 
 .container li {
-  text-align: left;
+  /* text-align: left; */
   font-size: 20px;
+  padding-bottom: 30px;
 }
 
 button {
@@ -30,4 +31,10 @@ input {
 select {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+img {
+  padding-top: 10px;
+  max-width: 300px;
+  align-items: center;
 }

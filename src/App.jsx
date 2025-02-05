@@ -6,7 +6,7 @@ function App() {
 
   const fetchPosts = () => {
     axios.get("http://localhost:3005/posts").then((res) => {
-      setArticlesList(res.data.title);
+      setArticlesList(res.data);
     });
   };
 
@@ -15,7 +15,7 @@ function App() {
   }, []);
 
   const [formData, setFormData] = useState({
-    author: "",
+    title: "",
     content: "",
     category: "FrontEnd",
     avaible: "",
@@ -34,7 +34,7 @@ function App() {
     setArticlesList((currentList) => [...currentList, formData]);
 
     setFormData({
-      author: "",
+      title: "",
       content: "",
       category: "",
       avaible: "",
@@ -48,11 +48,14 @@ function App() {
         <ul>
           {articlesList.map((article, id) => (
             <li key={id}>
-              <strong>{article.author}</strong> -
+              <strong>{article.title}</strong> <br />
+              <div>
+                <img src={article.image} alt=""></img>
+              </div>
               <em>
-                {""} {article.content} - {article.category}
+                {""} {article.content} {article.category}
               </em>
-              {""} | {article.avaible ? "Pubblicato" : "Non Pubblicato"}
+              {/* {""} | {article.avaible ? "Pubblicato" : "Non Pubblicato"} */}
             </li>
           ))}
         </ul>
@@ -64,8 +67,8 @@ function App() {
           <input
             type="text"
             placeholder="Inserisci il titolo"
-            value={formData.author}
-            onChange={(e) => formField("author", e.target.value)}
+            value={formData.title}
+            onChange={(e) => formField("title", e.target.value)}
             required
           />
           <br />
@@ -90,9 +93,9 @@ function App() {
             <option value="" disabled>
               Scegli un opzione
             </option>
-            <option value="FrontEnd">FrontEnd</option>
-            <option value="BackEnd">BackEnd</option>
-            <option value="UI/UX">UI/UX</option>
+            <option value="Primi">Primi</option>
+            <option value="Secondi">Secondi</option>
+            <option value="Dolci">Dolci</option>
           </select>
           <br />
           <label htmlFor="Pubblicalo">Lo vuoi Pubblicare?</label>
