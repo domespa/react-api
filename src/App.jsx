@@ -31,7 +31,10 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setArticlesList((currentList) => [...currentList, formData]);
+    axios.post("http://localhost:3005/posts", formData).then((res) => {
+      console.log(res.data);
+      setArticlesList((currentList) => [...currentList, res.data]);
+    });
 
     setFormData({
       title: "",
