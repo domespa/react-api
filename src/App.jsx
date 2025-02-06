@@ -31,10 +31,12 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // AGGIUNTA ARTICOLO
     axios.post("http://localhost:3005/posts", formData).then((res) => {
-      console.log(res.data);
       setArticlesList((currentList) => [...currentList, res.data]);
     });
+
+    // CANCELLAZIONE ARTICOLO
 
     setFormData({
       title: "",
@@ -44,6 +46,16 @@ function App() {
     });
   };
 
+  // CANCELLAZIONE ARTICOLO
+  const deleteArticle = (articleId) => {
+    axios.delete(`http://localhost:3005/posts/${articleId}`).then((res) => {
+      setArticlesList((currentList) =>
+        currentList.filter((article) => article.id !== articleId)
+      );
+    });
+    // console.log(articleId);
+  };
+
   return (
     <>
       <div className="container">
@@ -51,18 +63,22 @@ function App() {
         <ul>
           {articlesList.map((article, id) => (
             <li key={id}>
-              <strong>{article.title}</strong> <br />
+              <strong>{article.title}</strong>
+              <br />
               <div>
                 <img src={article.image} alt=""></img>
               </div>
               <em>
                 {""} {article.content} {article.category}
               </em>
+              <button onClick={() => deleteArticle(article.id)}>
+                Cancella
+              </button>
+              <hr />
               {/* {""} | {article.avaible ? "Pubblicato" : "Non Pubblicato"} */}
             </li>
           ))}
         </ul>
-        <hr />
         <h1>Aggiungi Articolo</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="titolo">Titolo</label>
@@ -77,7 +93,7 @@ function App() {
           <br />
           <label htmlFor="contenuto">Contenuto</label>
 
-          <input
+          <textarea
             type="text"
             placeholder="Inserisci il contenuto"
             value={formData.content}
@@ -86,8 +102,6 @@ function App() {
           />
           <br />
           <label htmlFor="categoria">Seleziona una categoria</label>
-          <br />
-
           <select
             value={formData.category}
             onChange={(e) => formField("category", e.target.value)}
