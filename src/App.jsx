@@ -60,25 +60,26 @@ function App() {
     <>
       <div className="container">
         <h1>LISTA ARTICOLI</h1>
-        <ul>
-          {articlesList.map((article, id) => (
-            <li key={id}>
-              <strong>{article.title}</strong>
-              <br />
-              <div>
-                <img src={article.image} alt=""></img>
-              </div>
-              <em>
-                {""} {article.content} {article.category}
-              </em>
-              <button onClick={() => deleteArticle(article.id)}>
-                Cancella
-              </button>
-              <hr />
-              {/* {""} | {article.avaible ? "Pubblicato" : "Non Pubblicato"} */}
-            </li>
-          ))}
-        </ul>
+        <div className="col">
+          <ul>
+            {articlesList.map((article) => (
+              <li key={article.id}>
+                <strong>{article.title}</strong>
+                <br />
+                <div>
+                  <img src={article.image} alt="" />
+                </div>
+                <em>
+                  {article.content} {article.category}
+                </em>
+                <button onClick={() => deleteArticle(article.id)}>
+                  Cancella
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <hr />
         <h1>Aggiungi Articolo</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="titolo">Titolo</label>
@@ -90,7 +91,6 @@ function App() {
             onChange={(e) => formField("title", e.target.value)}
             required
           />
-          <br />
           <label htmlFor="contenuto">Contenuto</label>
 
           <textarea
@@ -100,7 +100,6 @@ function App() {
             onChange={(e) => formField("content", e.target.value)}
             required
           />
-          <br />
           <label htmlFor="categoria">Seleziona una categoria</label>
           <select
             value={formData.category}
@@ -114,7 +113,6 @@ function App() {
             <option value="Secondi">Secondi</option>
             <option value="Dolci">Dolci</option>
           </select>
-          <br />
           <label htmlFor="Pubblicalo">Lo vuoi Pubblicare?</label>
 
           <input

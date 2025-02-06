@@ -3,7 +3,7 @@ body {
 }
 
 .container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
 }
@@ -11,12 +11,20 @@ body {
 .container ul {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .container li {
-  /* text-align: left; */
   font-size: 20px;
   padding-bottom: 30px;
+  width: 500px;
+  margin: 15px;
+  border: 1px solid #ddd;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: white;
 }
 
 button {
@@ -39,8 +47,8 @@ select {
 
 img {
   padding-top: 10px;
-  max-width: 300px;
-  align-items: center;
+  max-width: 100%;
+  height: auto;
 }
 
 textarea {
@@ -52,4 +60,9 @@ textarea {
 
 label {
   display: block;
+}
+
+.col {
+  max-height: 100%;
+  display: flex;
 }
