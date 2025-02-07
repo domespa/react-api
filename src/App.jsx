@@ -1,5 +1,11 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+// IMPORTO REACT-ROUTER
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+// IMPORTO PAGINE
+import Homepage from "./pages/Homepage";
+import AboutUs from "./pages/AbousUs";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const [articlesList, setArticlesList] = useState([]);
@@ -58,7 +64,14 @@ function App() {
 
   return (
     <>
-      <div className="container">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Homepage />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
+          <Route path="*" element={<PageNotFound />}></Route>
+        </Routes>
+      </BrowserRouter>
+      {/* <div className="container">
         <h1>LISTA ARTICOLI</h1>
         <div className="col">
           <ul>
@@ -122,7 +135,7 @@ function App() {
           />
           <button type="submit">Invia</button>
         </form>
-      </div>
+      </div> */}
     </>
   );
 }
